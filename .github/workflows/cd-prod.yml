@@ -22,7 +22,7 @@ jobs:
             script: |
               echo "Successfully connected to the server"
               
-              cd /home/cicd/cicd_database_example
+              cd /home/cicd/cicd_database_example 
               ls  
               echo "Successfully entered the CICD Example Production folder"
               

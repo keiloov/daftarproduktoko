@@ -7,7 +7,7 @@ on:
 
 jobs:
   db_cicd: 
-    name : Database CICD
+    name : Database CICDw
     runs-on: ubuntu-latest
     
     steps:
@@ -35,5 +35,5 @@ jobs:
               git pull origin main
             else
               echo "Git directory does not exist, cloning repository"
-              git clone
+              git clone https://github.com/PliTheGeek/cicd_database_example
             fi
