@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  # Layanan MySQL untuk Development
+  mysql_devel:
+    container_name: mysql_devel_container  # Tentukan nama container untuk mysql_devel
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Telkom123!
+      MYSQL_DATABASE: academics_devel
+    volumes:
+      - mysql_data_devel:/var/lib/mysql
+      - ./mysql_conf/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+    networks:
+      - devel_network
+    ports:
+      - "3307:3306"  # Expose port 3307 di host untuk akses development
+
+  # Layanan MySQL untuk Production
+  mysql_prod:
+    container_name: mysql_prod_container  # Tentukan nama container untuk mysql_prod
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Telkom123!
+      MYSQL_DATABASE: academics
+    volumes:
+      - mysql_data_prod:/var/lib/mysql
+      - ./mysql_conf/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+    networks:
+      - prod_network
+    ports:
+      - "3308:3306"  # Expose port 3308 di host untuk akses production
+
+# Volume untuk menyimpan data MySQL
+volumes:
+  mysql_data_devel:
+  mysql_data_prod:
+
+# Jaringan untuk Development dan Production
+networks:
+  devel_network:
+    driver: bridge
+  prod_network:
+    driver: bridge
